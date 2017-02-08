@@ -1,0 +1,11 @@
+.boardsWrapper {
+}
+
+.boardsWrapperTitle > label {
+    text-decoration: underline;
+    font-size: large;
+}
+
+.boardsWrapperTitle > label span {
+    padding-right: 5px;
+}

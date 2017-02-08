@@ -7,13 +7,12 @@ define([
     "dijit/_WidgetBase",
     "dojo/_base/declare",
     "dojo/text!scripts/pageHeader/pageHeader.html"
-], function (WidgetsInTemplateMixin, TemplatedMixin, WidgetBase, declare, template) {
+], function (WidgetsInTemplateMixin, TemplatedMixin, WidgetBase, declare, pageHeaderTemplate) {
 
     return declare([WidgetBase, TemplatedMixin, WidgetsInTemplateMixin], {
-        templateString: template,
+        templateString: pageHeaderTemplate,
 
         postCreate: function () {
-            console.log("Page header created.");
         }
     });
 });

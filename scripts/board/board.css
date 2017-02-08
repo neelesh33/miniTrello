@@ -1,0 +1,36 @@
+.boardWrapper {
+    padding: 5px;
+}
+
+.board {
+    height: 110px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px;
+    overflow: auto;
+    transition: transform 0.5s;
+    cursor: pointer;
+}
+
+.board:hover {
+    transform: scale(1.05);
+}
+
+.boardOptions {
+    position: absolute;
+    right: 15px;
+    top: 11px;
+    z-index: 10;
+    transition: 0.5s;
+    cursor: pointer;
+    visibility: hidden;
+}
+
+.boardOptions:hover {
+    color: #E1F43C;
+    transform: scale(1.2);
+}
+
+.boardContent > p {
+    font-weight: bold;
+}
