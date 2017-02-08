@@ -1,0 +1,17 @@
+.pageHeader {
+    background-color: #026AA7;
+}
+
+.pageHeader .pageTitle {
+    font-weight: bold;
+    color: black !important;
+    text-decoration: underline;
+}
+
+.userInfo a {
+    color: black !important;
+}
+
+.userInfo span {
+    padding-right: 5px;
+}
