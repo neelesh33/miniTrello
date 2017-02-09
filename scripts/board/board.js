@@ -15,34 +15,36 @@ define([
     return declare([WidgetBase, TemplatedMixin, WidgetsInTemplateMixin], {
         templateString: boardTemplate,
 
-        colors : ["#00AECC", "#985C7E", "#41837E", "#4183D2", "#41B87D", "#CAB87D", "#CAB85C",
+        colors: ["#00AECC", "#985C7E", "#41837E", "#4183D2", "#41B87D", "#CAB87D", "#CAB85C",
             "#5A6660", "#5A5C66", "#C797BD", "#4D8238", "#6E736C"],
+
+        content: "A Sample Board.",
 
         postCreate: function () {
             var self = this;
             this.setBoardColor();
 
             // Show board option button on mouse enter.
-            on(this.domNode, mouse.enter, function(evt) {
+            on(this.domNode, mouse.enter, function (evt) {
                 self.showBoardOption();
             });
 
             // Hide board option button on mouse leave.
-            on(this.domNode, mouse.leave, function(evt) {
+            on(this.domNode, mouse.leave, function (evt) {
                 self.hideBoardOption();
             });
 
             // Attach event for deleting the board.
-            on(this.deleteBoard, "click", function(evt) {
+            on(this.deleteBoard, "click", function (evt) {
                 self.destroy();
             });
         },
 
-        showBoardOption: function() {
+        showBoardOption: function () {
             domStyle.set(this.boardOption, "visibility", "visible");
         },
 
-        hideBoardOption: function() {
+        hideBoardOption: function () {
             domStyle.set(this.boardOption, "visibility", "hidden");
         },
 
@@ -51,7 +53,7 @@ define([
          * color of this board.
          * @private
          */
-        setBoardColor: function() {
+        setBoardColor: function () {
             var colorIndex = Math.floor(Math.random() * this.colors.length);
             domStyle.set(this.content, "background-color", this.colors[colorIndex]);
         }

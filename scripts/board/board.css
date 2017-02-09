@@ -7,7 +7,7 @@
     border: 1px solid black;
     border-radius: 5px;
     padding: 15px;
-    overflow: auto;
+    overflow: hidden;
     transition: transform 0.5s;
     cursor: pointer;
 }
@@ -33,4 +33,9 @@
 
 .boardContent > p {
     font-weight: bold;
+    word-break: break-all;
+}
+.boardContent {
+    overflow: auto;
+    height:100%;
 }

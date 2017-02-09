@@ -1,8 +1,18 @@
 <div class="container boardsWrapper">
-    <div class="col-md-12 boardsWrapperTitle">
+    <div class="col-md-12 boardsWrapperTitle dropdown">
         <label><span class="glyphicon glyphicon-user"></span> Personal Boards</label>
+
+        <!-- Create and delete boards options -->
+        <label class="boardContainerOption pull-right dropdown-toggle" data-toggle="dropdown"><span
+                class="glyphicon glyphicon-option-vertical"></span></label>
+
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li data-dojo-attach-point="createBoard"><a href="#">Create New Board</a></li>
+            <li data-dojo-attach-point="deleteAllBoard"><a href="#">Delete All Boards</a></li>
+        </ul>
     </div>
 
+    <!-- Container to hold the list of boards -->
     <div class="col-md-12 boardsContainer" data-dojo-attach-point="boardContainer">
 
     </div>
