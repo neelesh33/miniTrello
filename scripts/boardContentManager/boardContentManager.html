@@ -1,0 +1,23 @@
+<div class="container-fluid boardsWrapper">
+    <div class="col-md-12 boardsWrapperTitle dropdown">
+        <label><span class="glyphicon glyphicon-user"></span>Board Name</label>
+
+        <!-- Create and delete boards options -->
+        <label class="boardContainerOption pull-right dropdown-toggle" data-toggle="dropdown"><span
+                class="glyphicon glyphicon-option-vertical"></span></label>
+
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li data-dojo-attach-point="createBoard"><a href="#">Create New List</a></li>
+            <li data-dojo-attach-point="deleteAllBoard"><a href="#">Delete All Lists</a></li>
+        </ul>
+    </div>
+
+
+    <!-- Container to hold the list of cards -->
+    <div class="col-md-12 boardsContainer" >
+        <div class="scrollmenu" data-dojo-attach-point="cardContainer" style="width: 100%; height: 800px;">
+
+        </div>
+
+    </div>
+</div>

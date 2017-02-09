@@ -1,0 +1,27 @@
+<div class="cardListWrapper container">
+    <div class="col-md-12 cardListWrapperIn">
+        <div class="col-md-12 cardListHeader dropdown">
+            <label>ListName</label>
+
+            <!-- Create and delete boards options -->
+            <label class="boardContainerOption pull-right dropdown-toggle" data-toggle="dropdown"><span
+                    class="glyphicon glyphicon-option-vertical"></span></label>
+
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li data-dojo-attach-point="createBoard"><a href="#">Add Card</a></li>
+                <li data-dojo-attach-point="deleteAllBoard"><a href="#">Delete List</a></li>
+            </ul>
+        </div>
+
+        <!-- This will contain the list of cards. -->
+        <div class="col-md-12 cardContainerList" data-dojo-attach-point="cards">
+
+            <div class="col-md-12 well" ><p>This is your card.</p></div>
+            <div class="col-md-12 well" ><p>This is your card.</p></div>
+            <div class="col-md-12 well" ><p>This is your card.</p></div>
+            <div class="col-md-12 well" ><p>This is your card.</p></div>
+            <div class="col-md-12 well" ><p>This is your card.</p></div>
+
+        </div>
+    </div>
+</div>

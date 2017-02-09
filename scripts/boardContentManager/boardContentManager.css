@@ -1,0 +1,14 @@
+.scrollmenu {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.scrollmenu .cardListWrapper {
+    display: inline-block;
+    padding: 14px;
+    text-decoration: none;
+}
+
+.cardListWrapper {
+    width: 350px;
+}

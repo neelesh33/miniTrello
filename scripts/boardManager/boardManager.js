@@ -2,6 +2,7 @@
  * Created by neelesh on 8/2/17.
  */
 define([
+    "dojo/dom-style",
     "dojo/on",
     "dijit/_WidgetsInTemplateMixin",
     "dijit/_TemplatedMixin",
@@ -11,7 +12,7 @@ define([
     "scripts/board/board",
     "scripts/boardForm/boardForm",
     "dojo/text!scripts/boardManager/boardManager.html"
-], function (on, WidgetsInTemplateMixin, TemplatedMixin, WidgetBase, _Container, declare, Board, BoardForm, boardManagerTemplate) {
+], function (domStyle, on, WidgetsInTemplateMixin, TemplatedMixin, WidgetBase, _Container, declare, Board, BoardForm, boardManagerTemplate) {
 
     return declare([WidgetBase, TemplatedMixin, WidgetsInTemplateMixin], {
         templateString: boardManagerTemplate,
@@ -57,7 +58,7 @@ define([
          */
         onNewBoardSubmit: function () {
             var boardContent = this.newBoardWidget.getBoardContent();
-            if(boardContent.trim().length == 0) {
+            if (boardContent.trim().length == 0) {
                 return;
             }
             this.boardList.addChild(new Board({
@@ -96,5 +97,21 @@ define([
         getBoardList: function () {
             return this.boardList.getChildren();
         },
+
+        /**
+         * Show the list of available boards.
+         * @public
+         */
+        open: function () {
+            domStyle.set(this.domNode, "display", "block");
+        },
+
+        /**
+         * Hide the list of available boards.
+         * @public
+         */
+        close: function () {
+            domStyle.set(this.domNode, "display", "none");
+        }
     });
 });

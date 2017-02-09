@@ -1,0 +1,23 @@
+.cardListWrapper {
+    height: 100%;
+    padding: 10px;
+}
+
+.cardListWrapperIn {
+    background-color: #E2E4E6;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.cardListHeader {
+    padding: 5px;
+}
+.cardListHeader label{
+    text-decoration: underline;
+}
+
+.card {
+    background-color: white;
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
