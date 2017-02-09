@@ -57,9 +57,15 @@ define([
          */
         onNewBoardSubmit: function () {
             var boardContent = this.newBoardWidget.getBoardContent();
+            if(boardContent.trim().length == 0) {
+                return;
+            }
             this.boardList.addChild(new Board({
                 content: boardContent
             }));
+
+            $(this.newBoardWidget.domNode).modal('toggle');
+            this.newBoardWidget.resetForm();
         },
 
         /**
