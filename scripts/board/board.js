@@ -22,12 +22,19 @@ define([
             var self = this;
             this.setBoardColor();
 
+            // Show board option button on mouse enter.
             on(this.domNode, mouse.enter, function(evt) {
                 self.showBoardOption();
             });
 
+            // Hide board option button on mouse leave.
             on(this.domNode, mouse.leave, function(evt) {
                 self.hideBoardOption();
+            });
+
+            // Attach event for deleting the board.
+            on(this.deleteBoard, "click", function(evt) {
+                self.destroy();
             });
         },
 

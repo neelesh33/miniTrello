@@ -1,6 +1,12 @@
 .boardsWrapper {
 }
 
+.boardsWrapperTitle button {
+    text-decoration: underline;
+    font-weight: bold;
+    font-size: initial;
+}
+
 .boardsWrapperTitle > label {
     text-decoration: underline;
     font-size: large;
@@ -8,4 +14,13 @@
 
 .boardsWrapperTitle > label span {
     padding-right: 5px;
+}
+
+.boardsWrapperTitle {
+    border-bottom: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.boardContainerOption {
+    cursor: pointer;
 }

@@ -1,9 +1,15 @@
 <div class="col-md-3 boardWrapper">
-    <div class="col-md-1 boardOptions" data-dojo-attach-point="boardOption">
-        <span class="glyphicon glyphicon-option-vertical"></span>
+    <!-- Board drop down menu -->
+    <div class="col-md-1 boardOptions dropdown" data-dojo-attach-point="boardOption">
+        <span class="glyphicon glyphicon-option-vertical dropdown-toggle" data-toggle="dropdown"></span>
+
+        <ul class="dropdown-menu dropdown-menu-left">
+            <li data-dojo-attach-point="deleteBoard"><a href="#">Delete Board</a></li>
+        </ul>
     </div>
 
 
+    <!-- Board content -->
     <div class="col-md-12 board" data-dojo-attach-point="content">
         <div class="col-md-12 boardContent">
             <p>
