@@ -26,7 +26,7 @@ define([
             this.boardList.placeAt(this.boardContainer);
 
             this.newBoardWidget = new BoardForm();
-            this.newBoardWidget.placeAt(this.domNode);
+            this.newBoardWidget.placeAt(document.body);
 
             this.registerEvents();
         },
@@ -86,7 +86,7 @@ define([
             }
             this.addBoard(boardContent);
 
-            $(this.newBoardWidget.domNode).modal('toggle');
+            this.newBoardWidget.close();
             this.newBoardWidget.resetForm();
         },
 
@@ -117,7 +117,7 @@ define([
          */
         onCreateBoard: function () {
             this.newBoardWidget.resetForm();
-            $(this.newBoardWidget.domNode).modal();
+            this.newBoardWidget.open();
         },
 
         /**

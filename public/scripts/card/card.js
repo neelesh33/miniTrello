@@ -29,6 +29,17 @@ define([
         registerEvents: function () {
             var self = this;
 
+            on(this.domNode, mouse.enter, function(evt) {
+                domStyle.set(self.deleteBtn, "visibility", "visible");
+            });
+
+            on(this.domNode, mouse.leave, function(evt) {
+                domStyle.set(self.deleteBtn, "visibility", "hidden");
+            });
+
+            on(this.deleteBtn, "click", function() {
+                self.destroy();
+            });
         },
     });
 });

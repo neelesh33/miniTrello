@@ -13,8 +13,10 @@ define([
     "dijit/_WidgetBase",
     "dojo/_base/declare",
     "scripts/card/card",
+    "scripts/cardForm/cardForm",
     "dojo/text!scripts/cardList/cardList.html"
-], function (xhr, domStyle, on, mouse, domStyle, WidgetsInTemplateMixin, TemplatedMixin, _Container, WidgetBase, declare, Card, cardListTemplate) {
+], function (xhr, domStyle, on, mouse, domStyle, WidgetsInTemplateMixin, TemplatedMixin, _Container, WidgetBase, declare, Card,
+             CardForm, cardListTemplate) {
 
     return declare([WidgetBase, TemplatedMixin, WidgetsInTemplateMixin], {
         templateString: cardListTemplate,
@@ -22,20 +24,16 @@ define([
         postCreate: function () {
             var self = this;
             this.cardContainer = new declare([WidgetBase, _Container], {})();
-            this.cardContainer.domNode.className += "hola";
-            // this.cardContainer.placeAt(this.cards);
+            this.cardContainer.placeAt(this.cards);
+
+            this.newCardForm = new CardForm();
+            this.newCardForm.placeAt(document.body);
 
             this.registerEvents();
 
-           /* $(this.cards).sortable({
-                connectWith: ".cardContainerList",
-                appendTo: 'body',
-                tolerance: 'pointer',
-                revert: 'invalid',
-                forceHelperSize: true,
-                helper: 'original',
-                scroll: true
-            })*/
+            $(this.cards).sortable({
+                connectWith: ".cardContainerList"
+            });
 
         },
 
@@ -44,9 +42,9 @@ define([
          * @param cards - Array of cards.
          * @private
          */
-        populateCards: function(cards) {
+        populateCards: function (cards) {
             var self = this;
-            cards.forEach(function(card) {
+            cards.forEach(function (card) {
                 self.createCard(card.content);
             });
         },
@@ -57,14 +55,14 @@ define([
          * @public
          */
         createCard: function (content) {
-            var card = new Card({
+           /* var card = new Card({
                 content: content
             });
 
-            card.placeAt(this.cards);
-            /*  this.cardContainer.addChild(new Card({
+            card.placeAt(this.cards);*/
+              this.cardContainer.addChild(new Card({
              content: content
-             }));*/
+             }));
         }
         ,
 
@@ -76,6 +74,27 @@ define([
             var self = this;
             on(this.deleteList, "click", function () {
                 self.destroy();
+            });
+
+            on(this.addCard, "click", function (evt) {
+                self.newCardForm.open();
+            });
+
+            on(this.deleteAllBtn, "click", function (evt) {
+                self.deleteAllCards();
+            });
+
+            on(this.newCardForm.submitBtn, "click", function (evt) {
+                var content = self.newCardForm.getContent();
+                self.createCard(content);
+                self.newCardForm.close();
+            });
+        },
+
+        deleteAllCards: function () {
+            var cards = this.cardContainer.getChildren();
+            cards.forEach(function(card) {
+                card.destroy();
             });
         }
 

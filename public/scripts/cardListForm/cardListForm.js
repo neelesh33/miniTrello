@@ -1,5 +1,5 @@
 /**
- * Created by neelesh on 9/2/17.
+ * Created by neelesh on 11/2/17.
  */
 define([
     "dojo/on",
@@ -9,14 +9,14 @@ define([
     "dijit/_TemplatedMixin",
     "dijit/_WidgetBase",
     "dojo/_base/declare",
-    "dojo/text!scripts/boardForm/boardForm.html"
-], function (on, mouse, domStyle, WidgetsInTemplateMixin, TemplatedMixin, WidgetBase, declare, boardFormTemplate) {
+    "dojo/text!scripts/cardListForm/cardListForm.html"
+], function (on, mouse, domStyle, WidgetsInTemplateMixin, TemplatedMixin, WidgetBase, declare, cardListForm) {
 
     return declare([WidgetBase, TemplatedMixin, WidgetsInTemplateMixin], {
-        templateString: boardFormTemplate,
+        templateString: cardListForm,
         postCreate: function () {
             var self = this;
-            this.close();
+            self.close();
 
             this.registerEvents();
         },
@@ -28,26 +28,26 @@ define([
         registerEvents: function () {
             var self = this;
             on(this.closeBtn1, "click", function(evt) {
-                self.close();
                 self.resetForm();
+                self.close();
             });
 
             on(this.closeBtn2, "click", function(evt) {
-                self.close();
                 self.resetForm();
+                self.close();
             });
         },
 
         /**
-         * Returns board content.
+         * Returns content.
          * @public
          */
-        getBoardContent: function() {
+        getContent: function() {
             return this.content.value;
         },
 
         /**
-         * Reset the state of the new board form.
+         * Reset the state of the new Card list form.
          * @public
          */
         resetForm: function() {

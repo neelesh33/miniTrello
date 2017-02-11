@@ -13,9 +13,10 @@ define([
     "dijit/_WidgetBase",
     "dojo/_base/declare",
     "scripts/cardList/cardList",
+    "scripts/cardListForm/cardListForm",
     "dojo/text!scripts/boardContentManager/boardContentManager.html"
 ], function (xhr, domStyle, on, mouse, domStyle, WidgetsInTemplateMixin, _Container, TemplatedMixin, WidgetBase, declare,
-             CardList, BoardContentManager) {
+             CardList, CardListForm, BoardContentManager) {
 
     return declare([WidgetBase, TemplatedMixin, WidgetsInTemplateMixin], {
         templateString: BoardContentManager,
@@ -26,10 +27,14 @@ define([
             this.cardListContainer = new declare([WidgetBase, _Container], {})();
             this.cardListContainer.placeAt(this.cardContainer);
 
+            this.newCardListWidget = new CardListForm();
+            this.newCardListWidget.placeAt(document.body);
+
             this.registerEvents();
         },
 
         init: function () {
+            this.emptyBoard();
             this.createLists();
         },
 
@@ -71,13 +76,6 @@ define([
         },
 
         setHeight: function () {
-            var totalH = $(document).height();
-            var totalW = $(document).width();
-            console.log(totalH, totalW);
-            var elem = $(this.cardContainer)[0];
-            console.log($(elem).offset());
-            // var p = $(test).position();
-            //console.log(p);
 
         },
 
@@ -96,13 +94,33 @@ define([
             on(this.deleteAllList, "click", function () {
                 self.onDeleteAllList();
             });
+
+            // Event for creating new card list.
+            on(this.newCardListWidget.submitBtn, "click", function (evt) {
+                var listName = self.newCardListWidget.getContent();
+                self.createCardList(listName);
+                self.newCardListWidget.close();
+            });
         },
 
+        /**
+         * Opens New Card list form
+         * @public
+         */
         onCreateList: function () {
-
+            this.newCardListWidget.resetForm();
+            this.newCardListWidget.open();
         },
 
         onDeleteAllList: function () {
+            this.emptyBoard();
+        },
+
+        /**
+         * Delete all the list of this board.
+         * @public
+         */
+        emptyBoard: function () {
             var cardLists = this.cardListContainer.getChildren();
             cardLists.forEach(function (item) {
                 item.destroy();

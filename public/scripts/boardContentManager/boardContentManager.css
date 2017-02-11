@@ -4,11 +4,13 @@
 }
 
 .scrollmenu .cardListWrapper {
-    display: inline-block;
+    display: block;
     padding: 14px;
     text-decoration: none;
 }
 
-.cardListWrapper {
-    width: 350px;
+.homeBtn {
+    margin-right: 100px;
+    cursor: pointer;
+    color:#026AA7
 }

@@ -55,7 +55,7 @@ router.get('/board/:id', function (req, res, next) {
                 {id: 2, content: "Because i told you its is hard coded."},
                 {id: 3, content: "Even for newly created board you will get the same list and cards."},
                 {id: 4, content: "Well this is how it works.!!"},
-                {id: 5, content: "One temporary card"},
+                {id: 5, content: "NOTE : Scrolling/Qverflow is not handled properly in this page due to very little time. So if you create many lists and card then UI may break :P"},
                 {id: 5, content: "That's All !!"},
                 {id: 5, content: "Thank u !!"},
 

@@ -2,6 +2,7 @@
  * Created by neelesh on 8/2/17.
  */
 define([
+    "dojo/on",
     "dojo/Evented",
     "dojo/_base/declare",
     "dijit/_WidgetBase",
@@ -9,7 +10,7 @@ define([
     "scripts/pageHeader/pageHeader",
     "scripts/boardManager/boardManager",
     "scripts/boardContentManager/boardContentManager"
-], function (Evented, declare, _WidgetBase, _Container, PageHeader, BoardManager, BoardContentManager) {
+], function (on, Evented, declare, _WidgetBase, _Container, PageHeader, BoardManager, BoardContentManager) {
     return declare([_WidgetBase, _Container, Evented], {
 
         pageHeader: undefined,
@@ -43,6 +44,11 @@ define([
             var self = this;
             this.boardManager.on("BoardClick", function(board) {
                 self.onBoardClick();
+            });
+
+            on(this.boardContentManager.homeBtn, "click", function() {
+                self.boardContentManager.close();
+                self.boardManager.open();
             });
         },
 
