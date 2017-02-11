@@ -19,6 +19,7 @@ define([
             "#5A6660", "#5A5C66", "#C797BD", "#4D8238", "#6E736C"],
 
         content: "A Sample Board.",
+        boardId: undefined,
 
         postCreate: function () {
             var self = this;
@@ -38,6 +39,22 @@ define([
             on(this.deleteBoard, "click", function (evt) {
                 self.destroy();
             });
+        },
+
+        /**
+         * Returns the value of this board.
+         * @public
+         */
+        getContent: function() {
+            return this.contentNode.innerHTML.trim();
+        },
+
+        /**
+         * Returns id of this board.
+         * @returns {undefined|*}
+         */
+        getBoardId: function() {
+            return this.boardId;
         },
 
         showBoardOption: function () {

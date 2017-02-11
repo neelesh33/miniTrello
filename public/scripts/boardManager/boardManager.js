@@ -2,6 +2,8 @@
  * Created by neelesh on 8/2/17.
  */
 define([
+    "dojo/Evented",
+    "dojo/request/xhr",
     "dojo/dom-style",
     "dojo/on",
     "dijit/_WidgetsInTemplateMixin",
@@ -12,9 +14,9 @@ define([
     "scripts/board/board",
     "scripts/boardForm/boardForm",
     "dojo/text!scripts/boardManager/boardManager.html"
-], function (domStyle, on, WidgetsInTemplateMixin, TemplatedMixin, WidgetBase, _Container, declare, Board, BoardForm, boardManagerTemplate) {
+], function (Evented, xhr, domStyle, on, WidgetsInTemplateMixin, TemplatedMixin, WidgetBase, _Container, declare, Board, BoardForm, boardManagerTemplate) {
 
-    return declare([WidgetBase, TemplatedMixin, WidgetsInTemplateMixin], {
+    return declare([WidgetBase, TemplatedMixin, WidgetsInTemplateMixin, Evented], {
         templateString: boardManagerTemplate,
 
         postCreate: function () {
@@ -27,6 +29,27 @@ define([
             this.newBoardWidget.placeAt(this.domNode);
 
             this.registerEvents();
+        },
+
+        /**
+         * Initialize everything.
+         * @public
+         */
+        init: function () {
+            this.createBoards();
+        },
+
+        createBoards: function () {
+            var self = this;
+            xhr("/boards", {
+                handleAs: "json"
+            }).then(function(response) {
+                response.forEach(function(board) {
+                    self.addBoard(board.name);
+                });
+            }, function(error) {
+                console.log(error);
+            });
         },
 
         /**
@@ -61,12 +84,31 @@ define([
             if (boardContent.trim().length == 0) {
                 return;
             }
-            this.boardList.addChild(new Board({
-                content: boardContent
-            }));
+            this.addBoard(boardContent);
 
             $(this.newBoardWidget.domNode).modal('toggle');
             this.newBoardWidget.resetForm();
+        },
+
+        /**
+         * Creates and adds a board with given name.
+         * @param content {String} Name of the board.
+         * @public
+         */
+        addBoard: function(content) {
+            var self = this;
+            var board = new Board({
+                content: content
+            });
+
+            on(board.domNode, "click", function(evt) {
+                self.emit("BoardClick", {
+                    id: board.getBoardId(),
+                    content: board.getContent()
+                });
+            });
+
+            this.boardList.addChild(board);
         },
 
         /**

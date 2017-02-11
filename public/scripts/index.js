@@ -2,14 +2,15 @@
  * Created by neelesh on 8/2/17.
  */
 define([
+    "dojo/Evented",
     "dojo/_base/declare",
     "dijit/_WidgetBase",
     "dijit/_Container",
     "scripts/pageHeader/pageHeader",
     "scripts/boardManager/boardManager",
     "scripts/boardContentManager/boardContentManager"
-], function (declare, _WidgetBase, _Container, PageHeader, BoardManager, BoardContentManager) {
-    return declare([_WidgetBase, _Container], {
+], function (Evented, declare, _WidgetBase, _Container, PageHeader, BoardManager, BoardContentManager) {
+    return declare([_WidgetBase, _Container, Evented], {
 
         pageHeader: undefined,
         boardManager: undefined,
@@ -23,13 +24,36 @@ define([
 
             // Creating the home that is board container that will show the list of boards available.
             this.boardManager = new BoardManager();
+            this.boardManager.init();
             this.addChild(this.boardManager);
-            this.boardManager.close();
 
             // Creating the ui that will show the tasks of a selected board.
             this.boardContentManager = new BoardContentManager();
             this.addChild(this.boardContentManager);
-            //this.boardContentManager.close();
-        }
+            this.boardContentManager.close();
+
+            this.registerEvented();
+        },
+
+        /**
+         * Registers event.
+         * @private
+         */
+        registerEvented: function() {
+            var self = this;
+            this.boardManager.on("BoardClick", function(board) {
+                self.onBoardClick();
+            });
+        },
+
+        /**
+         * Opens the content of the board on clicking a board.
+         * @private
+         */
+        onBoardClick: function() {
+            this.boardContentManager.init();
+            this.boardManager.close();
+            this.boardContentManager.open();
+        },
     });
 });
