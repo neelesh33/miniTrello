@@ -1,2 +1,3 @@
 # Don't add IDE configuration file.
 .idea/
+node_modules/**
