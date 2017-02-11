@@ -1,14 +1,14 @@
 <div class="container-fluid boardsWrapper">
     <div class="col-md-12 boardsWrapperTitle dropdown">
-        <label><span class="glyphicon glyphicon-user"></span>Board Name</label>
+        <label><span class="glyphicon glyphicon-user"></span>${name}</label>
 
         <!-- Create and delete boards options -->
         <label class="boardContainerOption pull-right dropdown-toggle" data-toggle="dropdown"><span
                 class="glyphicon glyphicon-option-vertical"></span></label>
 
         <ul class="dropdown-menu dropdown-menu-right">
-            <li data-dojo-attach-point="createBoard"><a href="#">Create New List</a></li>
-            <li data-dojo-attach-point="deleteAllBoard"><a href="#">Delete All Lists</a></li>
+            <li data-dojo-attach-point="createList"><a href="#">Create New List</a></li>
+            <li data-dojo-attach-point="deleteAllList"><a href="#">Delete All Lists</a></li>
         </ul>
     </div>
 

@@ -29,6 +29,7 @@ define([
             // Creating the ui that will show the tasks of a selected board.
             this.boardContentManager = new BoardContentManager();
             this.addChild(this.boardContentManager);
+            //this.boardContentManager.close();
         }
     });
 });

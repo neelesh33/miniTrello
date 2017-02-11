@@ -18,27 +18,42 @@ define([
 
     return declare([WidgetBase, TemplatedMixin, WidgetsInTemplateMixin], {
         templateString: BoardContentManager,
+        name: "Board",
         postCreate: function () {
             var self = this;
 
             this.cardListContainer = new declare([WidgetBase, _Container], {})();
-
             this.cardListContainer.placeAt(this.cardContainer);
 
-            this.cardListContainer.addChild(new CardList());
-            this.cardListContainer.addChild(new CardList());
-            this.cardListContainer.addChild(new CardList());
-            this.cardListContainer.addChild(new CardList());
-            this.cardListContainer.addChild(new CardList());
-            this.cardListContainer.addChild(new CardList());
-            this.cardListContainer.addChild(new CardList());
-            this.cardListContainer.addChild(new CardList());
-            this.cardListContainer.addChild(new CardList());
-            this.cardListContainer.addChild(new CardList());
-            this.cardListContainer.addChild(new CardList());
-
+            this.createCardList("Card List - 1");
+            this.createCardList("Card List - 1");
+            this.createCardList("Card List - 1");
+            this.createCardList("Card List - 1");
+            this.createCardList("Card List - f");
+            this.createCardList("Card List - 3");
+            this.createCardList("Card List - 2");
+            this.createCardList("Card List - 4");
+            this.createCardList("Card List - 6");
+            this.createCardList("Card List - 8");
+            this.createCardList("Card List - 9");
 
             this.registerEvents();
+        },
+
+        init: function() {
+
+        },
+
+        /**
+         * Creates card container.
+         * @public
+         */
+        createCardList: function(listName) {
+            var cardList = new CardList({
+                name: listName
+            });
+
+            this.cardListContainer.addChild(cardList);
         },
 
         startup: function () {
@@ -61,7 +76,27 @@ define([
          * @private
          */
         registerEvents: function () {
+            var self = this;
+            // Event for create list menu.
+            on(this.createList, "click", function() {
+                self.onCreateList();
+            });
 
+            // Event for delete all list menu.
+            on(this.deleteAllList, "click", function() {
+                self.onDeleteAllList();
+            });
+        },
+
+        onCreateList: function() {
+
+        },
+
+        onDeleteAllList: function() {
+            var cardLists = this.cardListContainer.getChildren();
+            cardLists.forEach(function(item) {
+                item.destroy();
+            });
         },
 
         /**

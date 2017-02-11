@@ -15,9 +15,3 @@
 .cardListHeader label{
     text-decoration: underline;
 }
-
-.card {
-    background-color: white;
-    border-radius: 3px;
-    margin-bottom: 15px;
-}

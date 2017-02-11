@@ -13,7 +13,7 @@
 }
 
 .board:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .boardOptions {
@@ -28,7 +28,6 @@
 
 .boardOptions:hover {
     color: #E1F43C;
-    transform: scale(1.2);
 }
 
 .boardContent > p {
