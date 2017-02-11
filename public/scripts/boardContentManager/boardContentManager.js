@@ -29,7 +29,7 @@ define([
             this.registerEvents();
         },
 
-        init: function() {
+        init: function () {
             this.createLists();
         },
 
@@ -38,15 +38,16 @@ define([
          * will create lists and cards according to the data.
          * @public
          */
-        createLists: function() {
+        createLists: function () {
             var self = this;
             xhr("/board/1", {
                 handleAs: "json"
-            }).then(function(response) {
-                response.forEach(function(cardList) {
-                   self.createCardList(cardList.name);
+            }).then(function (response) {
+                response.forEach(function (cardList) {
+                    var list = self.createCardList(cardList.name);
+                    list.populateCards(cardList.cards);
                 });
-            }, function(error) {
+            }, function (error) {
                 console.error(error);
             });
         },
@@ -56,12 +57,13 @@ define([
          * Creates card container.
          * @public
          */
-        createCardList: function(listName) {
+        createCardList: function (listName) {
             var cardList = new CardList({
                 name: listName
             });
 
             this.cardListContainer.addChild(cardList);
+            return cardList;
         },
 
         startup: function () {
@@ -86,23 +88,23 @@ define([
         registerEvents: function () {
             var self = this;
             // Event for create list menu.
-            on(this.createList, "click", function() {
+            on(this.createList, "click", function () {
                 self.onCreateList();
             });
 
             // Event for delete all list menu.
-            on(this.deleteAllList, "click", function() {
+            on(this.deleteAllList, "click", function () {
                 self.onDeleteAllList();
             });
         },
 
-        onCreateList: function() {
+        onCreateList: function () {
 
         },
 
-        onDeleteAllList: function() {
+        onDeleteAllList: function () {
             var cardLists = this.cardListContainer.getChildren();
-            cardLists.forEach(function(item) {
+            cardLists.forEach(function (item) {
                 item.destroy();
             });
         },
