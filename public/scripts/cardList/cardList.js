@@ -1,5 +1,7 @@
 /**
  * Created by neelesh on 9/2/17.
+ *
+ * @file User interface for creating a new Card List.
  */
 define([
     "dojo/request/xhr",
@@ -24,17 +26,13 @@ define([
         postCreate: function () {
             var self = this;
             this.cardContainer = new declare([WidgetBase, _Container], {})();
+            this.cardContainer.domNode.className += "sortableList";
             this.cardContainer.placeAt(this.cards);
 
             this.newCardForm = new CardForm();
             this.newCardForm.placeAt(document.body);
 
             this.registerEvents();
-
-            $(this.cards).sortable({
-                connectWith: ".cardContainerList"
-            });
-
         },
 
         /**
@@ -55,14 +53,14 @@ define([
          * @public
          */
         createCard: function (content) {
-           /* var card = new Card({
-                content: content
-            });
-
-            card.placeAt(this.cards);*/
-              this.cardContainer.addChild(new Card({
+            /* var card = new Card({
              content: content
-             }));
+             });
+
+             card.placeAt(this.cards);*/
+            this.cardContainer.addChild(new Card({
+                content: content
+            }));
         }
         ,
 
@@ -86,6 +84,7 @@ define([
 
             on(this.newCardForm.submitBtn, "click", function (evt) {
                 var content = self.newCardForm.getContent();
+                self.newCardForm.resetForm();
                 self.createCard(content);
                 self.newCardForm.close();
             });
@@ -93,7 +92,7 @@ define([
 
         deleteAllCards: function () {
             var cards = this.cardContainer.getChildren();
-            cards.forEach(function(card) {
+            cards.forEach(function (card) {
                 card.destroy();
             });
         }

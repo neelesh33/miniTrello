@@ -1,5 +1,7 @@
 /**
  * Created by neelesh on 9/2/17.
+ *
+ * @file User interface to create a new board.
  */
 define([
     "dojo/on",
@@ -27,12 +29,12 @@ define([
          */
         registerEvents: function () {
             var self = this;
-            on(this.closeBtn1, "click", function(evt) {
+            on(this.closeBtn1, "click", function (evt) {
                 self.close();
                 self.resetForm();
             });
 
-            on(this.closeBtn2, "click", function(evt) {
+            on(this.closeBtn2, "click", function (evt) {
                 self.close();
                 self.resetForm();
             });
@@ -42,7 +44,7 @@ define([
          * Returns board content.
          * @public
          */
-        getBoardContent: function() {
+        getBoardContent: function () {
             return this.content.value;
         },
 
@@ -50,15 +52,15 @@ define([
          * Reset the state of the new board form.
          * @public
          */
-        resetForm: function() {
+        resetForm: function () {
             this.content.value = "";
         },
 
-        open: function() {
+        open: function () {
             domStyle.set(this.domNode, "display", "block");
         },
 
-        close: function() {
+        close: function () {
             domStyle.set(this.domNode, "display", "none");
         },
     });

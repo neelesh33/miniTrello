@@ -1,5 +1,6 @@
 /**
  * Created by neelesh on 8/2/17.
+ * @file Class to handle create/delete Boards.
  */
 define([
     "dojo/Evented",
@@ -39,15 +40,19 @@ define([
             this.createBoards();
         },
 
+        /**
+         * Get the list of boards from the server and create boards.
+         * @public
+         */
         createBoards: function () {
             var self = this;
             xhr("/boards", {
                 handleAs: "json"
-            }).then(function(response) {
-                response.forEach(function(board) {
+            }).then(function (response) {
+                response.forEach(function (board) {
                     self.addBoard(board.name);
                 });
-            }, function(error) {
+            }, function (error) {
                 console.log(error);
             });
         },
@@ -95,13 +100,13 @@ define([
          * @param content {String} Name of the board.
          * @public
          */
-        addBoard: function(content) {
+        addBoard: function (content) {
             var self = this;
             var board = new Board({
                 content: content
             });
 
-            on(board.domNode, "click", function(evt) {
+            on(board.domNode, "click", function (evt) {
                 self.emit("BoardClick", {
                     id: board.getBoardId(),
                     content: board.getContent()

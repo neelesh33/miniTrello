@@ -1,5 +1,7 @@
 /**
  * Created by neelesh on 8/2/17.
+ *
+ * @file User interface for Board.
  */
 define([
     "dojo/on",
@@ -45,7 +47,7 @@ define([
          * Returns the value of this board.
          * @public
          */
-        getContent: function() {
+        getContent: function () {
             return this.contentNode.innerHTML.trim();
         },
 
@@ -53,7 +55,7 @@ define([
          * Returns id of this board.
          * @returns {undefined|*}
          */
-        getBoardId: function() {
+        getBoardId: function () {
             return this.boardId;
         },
 

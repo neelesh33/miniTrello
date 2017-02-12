@@ -1,5 +1,7 @@
 /**
  * Created by neelesh on 8/2/17.
+ *
+ * @file Title/Header of the page.
  */
 define([
     "dijit/_WidgetsInTemplateMixin",

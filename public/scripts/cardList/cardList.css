@@ -12,6 +12,7 @@
 .cardListHeader {
     padding: 5px;
 }
-.cardListHeader label{
+
+.cardListHeader label {
     text-decoration: underline;
 }

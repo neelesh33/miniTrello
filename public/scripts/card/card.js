@@ -1,5 +1,6 @@
 /**
  * Created by neelesh on 10/2/17.
+ * @file User interface for a Card.
  */
 define([
     "dojo/dnd/Moveable",
@@ -19,7 +20,6 @@ define([
         postCreate: function () {
             this.registerEvents();
 
-            //var dnd = new Moveable(this.domNode);
         },
 
         /**
@@ -29,15 +29,15 @@ define([
         registerEvents: function () {
             var self = this;
 
-            on(this.domNode, mouse.enter, function(evt) {
+            on(this.domNode, mouse.enter, function (evt) {
                 domStyle.set(self.deleteBtn, "visibility", "visible");
             });
 
-            on(this.domNode, mouse.leave, function(evt) {
+            on(this.domNode, mouse.leave, function (evt) {
                 domStyle.set(self.deleteBtn, "visibility", "hidden");
             });
 
-            on(this.deleteBtn, "click", function() {
+            on(this.deleteBtn, "click", function () {
                 self.destroy();
             });
         },

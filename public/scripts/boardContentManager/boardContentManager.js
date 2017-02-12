@@ -1,5 +1,7 @@
 /**
  * Created by neelesh on 9/2/17.
+ *
+ * @file Class to manage Cards and lists of a Board.
  */
 define([
     "dojo/request/xhr",
@@ -31,11 +33,13 @@ define([
             this.newCardListWidget.placeAt(document.body);
 
             this.registerEvents();
+            this.id = 0;
         },
 
         init: function () {
             this.emptyBoard();
             this.createLists();
+            this.id++;
         },
 
         /**
@@ -63,20 +67,20 @@ define([
          * @public
          */
         createCardList: function (listName) {
+
             var cardList = new CardList({
-                name: listName
+                name: listName,
+                id: 'hello' + this.id++
             });
 
             this.cardListContainer.addChild(cardList);
+
+            //Make the list sortable by drag and drop
+            $(".sortableList").sortable({
+                connectWith: ".sortableList"
+            });
+
             return cardList;
-        },
-
-        startup: function () {
-            this.setHeight();
-        },
-
-        setHeight: function () {
-
         },
 
         /**

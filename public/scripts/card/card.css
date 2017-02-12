@@ -1,13 +1,14 @@
 .well {
-   background-color: white;
+    background-color: white;
     margin-bottom: 10px;
 }
+
 .ui-sortable-helper {
-   transform: rotate(3deg);
-   border: 1px solid #026AA7;
+    transform: rotate(3deg);
+    border: 1px solid #026AA7;
 }
 
-.cardOptions{
+.cardOptions {
     float: right;
     color: #026AA7;
     cursor: pointer;
